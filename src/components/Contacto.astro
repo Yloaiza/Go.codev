@@ -1,0 +1,28 @@
+---
+import { sitio } from '../data/sitio';
+
+const { whatsapp, correo, instagram } = sitio.contacto;
+const mensaje = encodeURIComponent('¡Hola Go.Codev! Quiero contarles mi idea para un proyecto.');
+const wa = `https://wa.me/${whatsapp}?text=${mensaje}`;
+const mail = `mailto:${correo}?subject=${encodeURIComponent('Quiero cotizar un proyecto')}`;
+const ig = `https://instagram.com/${instagram}`;
+---
+
+<section id="contacto" class="contacto">
+  <span class="burbuja burbuja--4" aria-hidden="true"></span>
+  <div class="contenedor contacto__caja">
+    <h2 data-reveal>¿Hablamos de tu proyecto?</h2>
+    <p class="lead lead--claro" data-reveal style="--d:.1s">
+      Cuéntanos tu idea y te respondemos con una propuesta clara. La primera conversación no tiene costo.
+    </p>
+    <div class="hero__botones hero__botones--centro" data-reveal style="--d:.2s">
+      <a href={wa} class="boton boton--blanco" target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a>
+      <a href={mail} class="boton boton--oscuro">Enviar un correo</a>
+    </div>
+    <p class="contacto__datos" data-reveal style="--d:.3s">
+      <a href={ig} target="_blank" rel="noopener noreferrer">Instagram: @{instagram}</a>
+      <span aria-hidden="true">·</span>
+      <a href={mail}>{correo}</a>
+    </p>
+  </div>
+</section>

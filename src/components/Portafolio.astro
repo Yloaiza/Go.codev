@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+
+// Los proyectos se apilan solos: el más reciente (por `fecha`) queda primero.
+const proyectos = (await getCollection('proyectos')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf()
+);
+const total = proyectos.length;
+---
+
+<section id="portafolio" class="seccion">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <p class="sobretitulo">Portafolio</p>
+      <h2>Páginas que ya están funcionando</h2>
+      <p class="lead">
+        Algunos de los proyectos que hemos construido para negocios como el tuyo.
+        <span class="contador">{total} {total === 1 ? 'proyecto' : 'proyectos'} y contando</span>
+      </p>
+    </div>
+
+    <div class="rejilla rejilla--proyectos">
+      {
+        proyectos.map(({ data: p }, i) => {
+          const Etiqueta = p.url ? 'a' : 'div';
+          return (
+            <div data-reveal="pop" style={`--d:${(i % 3) * 0.12}s`}>
+              <Etiqueta
+                class="proyecto"
+                href={p.url}
+                target={p.url ? '_blank' : undefined}
+                rel={p.url ? 'noopener noreferrer' : undefined}
+              >
+                <div class="proyecto__marco">
+                  <div class="navegador">
+                    <div class="navegador__barra">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div class="navegador__pantalla">
+                      {p.captura ? (
+                        <img src={p.captura} alt={`Captura de ${p.nombre}`} loading="lazy" />
+                      ) : (
+                        <span class="navegador__vacio">[CAPTURA PENDIENTE]</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div class="proyecto__info">
+                  <div class="proyecto__meta">
+                    <span>{p.tipo}</span>
+                    <span>{p.fecha.getUTCFullYear()}</span>
+                  </div>
+                  <h3>{p.nombre}</h3>
+                  <p>{p.descripcion}</p>
+                  {p.tecnologias.length > 0 && (
+                    <ul class="etiquetas">
+                      {p.tecnologias.map((t) => (
+                        <li>{t}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {p.url && <span class="proyecto__enlace">Visitar sitio →</span>}
+                </div>
+              </Etiqueta>
+            </div>
+          );
+        })
+      }
+
+      <div class="rejilla__todo" data-reveal="pop">
+        <a href="#contacto" class="proyecto proyecto--siguiente">
+          <span class="siguiente__mas" aria-hidden="true">+</span>
+          <div class="siguiente__texto">
+            <h3>Tu proyecto puede ser el siguiente</h3>
+            <p>Cuéntanos tu idea y la convertimos en la próxima tarjeta de esta lista.</p>
+          </div>
+          <span class="boton boton--morado">Hablemos</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

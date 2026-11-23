@@ -1,0 +1,39 @@
+---
+import { preguntas } from '../data/sitio';
+
+// Datos estructurados para que Google pueda mostrar las preguntas en los resultados
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((q) => ({
+    '@type': 'Question',
+    name: q.p,
+    acceptedAnswer: { '@type': 'Answer', text: q.r },
+  })),
+};
+---
+
+<section id="faq" class="seccion">
+  <div class="contenedor contenedor--angosto">
+    <div class="encabezado encabezado--centro" data-reveal>
+      <p class="sobretitulo">Resolvemos tus dudas</p>
+      <h2>Preguntas frecuentes</h2>
+    </div>
+    <div class="faq">
+      {
+        preguntas.map((q, i) => (
+          <div data-reveal style={`--d:${i * 0.06}s`}>
+            <details class="pregunta">
+              <summary>
+                <span>{q.p}</span>
+                <span class="mas" aria-hidden="true">+</span>
+              </summary>
+              <p>{q.r}</p>
+            </details>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>

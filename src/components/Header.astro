@@ -1,0 +1,21 @@
+---
+import Mascota from './Mascota.astro';
+import { sitio } from '../data/sitio';
+---
+
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a href="#inicio" class="marca" aria-label={`${sitio.nombre}, ir al inicio`}>
+      <Mascota modo="morada" />
+      <span>Go<i>.</i><b>Codev</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#esperar">Cómo trabajamos</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto" class="boton boton--morado boton--chico">Hablemos</a>
+    </nav>
+  </div>
+</header>

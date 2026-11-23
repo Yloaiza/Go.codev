@@ -1,0 +1,42 @@
+---
+import Mascota from './Mascota.astro';
+
+const titulo = ['Tu', 'idea,', 'hecha', 'código', 'con'];
+const destacado = ['buena', 'vibra.'];
+---
+
+<section id="inicio" class="hero">
+  <span class="burbuja burbuja--1" aria-hidden="true"></span>
+  <span class="burbuja burbuja--2" aria-hidden="true"></span>
+  <span class="burbuja burbuja--3" aria-hidden="true"></span>
+  <div class="contenedor hero__fila">
+    <div class="hero__texto">
+      <div class="etiqueta entrada" style="--i:0">Desarrollo de software para negocios y empresas</div>
+      <h1 class="hero__titulo">
+        {titulo.map((w, i) => <span class="palabra" style={`--i:${i + 1}`}>{w}</span>)}
+        {
+          destacado.map((w, i) => (
+            <span class="palabra palabra--claro" style={`--i:${i + 1 + titulo.length}`}>
+              {w}
+            </span>
+          ))
+        }
+      </h1>
+      <p class="hero__sub entrada" style="--i:8">
+        Creamos páginas web, apps y sistemas a la medida de tu negocio. Te hablamos claro, sin tecnicismos, y cumplimos lo que prometemos.
+      </p>
+      <div class="hero__botones entrada" style="--i:9">
+        <a href="#contacto" class="boton boton--blanco">Cuéntanos tu idea</a>
+        <a href="#portafolio" class="boton boton--borde">Ver portafolio</a>
+      </div>
+    </div>
+    <div class="hero__mascota">
+      <div class="flota">
+        <Mascota animada etiqueta="Mascota de Go.Codev: una burbuja de diálogo sonriente con símbolos de código como ojos" />
+      </div>
+      <span class="ficha ficha--1" aria-hidden="true">&lt;/&gt;</span>
+      <span class="ficha ficha--2" aria-hidden="true">&#123; &#125;</span>
+      <span class="ficha ficha--3" aria-hidden="true">;)</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import { pasos } from '../data/sitio';
+---
+
+<section id="esperar" class="seccion seccion--oscura">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <p class="sobretitulo sobretitulo--claro">Qué esperar al trabajar con nosotros</p>
+      <h2>Un proceso claro, de la idea a la entrega</h2>
+    </div>
+    <ol class="rejilla rejilla--pasos">
+      {
+        pasos.map((p, i) => (
+          <li data-reveal style={`--d:${i * 0.12}s`}>
+            <div class="paso">
+              <span class="paso__numero">{i + 1}</span>
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

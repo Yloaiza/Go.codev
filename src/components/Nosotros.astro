@@ -1,0 +1,28 @@
+---
+import { sitio, valores } from '../data/sitio';
+---
+
+<section id="nosotros" class="seccion seccion--lila">
+  <div class="contenedor nosotros">
+    <div class="nosotros__texto" data-reveal="izq">
+      <p class="sobretitulo">Quiénes somos</p>
+      <h2>Un equipo que habla tu idioma</h2>
+      <p class="lead">
+        Somos <strong>{sitio.nombre}</strong>. Convertimos las ideas de tu negocio en software que sí funciona, con un trato cercano y con sentido del humor.
+      </p>
+      <p class="lead">{sitio.historia}</p>
+    </div>
+    <div class="nosotros__valores">
+      {
+        valores.map((v, i) => (
+          <div data-reveal="der" style={`--d:${i * 0.12}s`}>
+            <div class="valor">
+              <h3>{v.titulo}</h3>
+              <p>{v.texto}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

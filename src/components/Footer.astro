@@ -1,0 +1,15 @@
+---
+import Mascota from './Mascota.astro';
+import { sitio } from '../data/sitio';
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <div class="marca marca--pie">
+      <Mascota modo="lila" />
+      <span>{sitio.nombre}</span>
+    </div>
+    <p>{sitio.lema} · © {anio} {sitio.nombre}</p>
+  </div>
+</footer>

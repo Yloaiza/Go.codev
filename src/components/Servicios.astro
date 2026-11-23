@@ -1,0 +1,46 @@
+---
+import { servicios } from '../data/sitio';
+
+const iconos: Record<string, string> = {
+  web: '<rect x="4" y="12" width="92" height="76" rx="12" fill="#EDE9FE"/><line x1="4" y1="34" x2="96" y2="34"/><polyline points="38,52 26,62 38,72"/><polyline points="62,52 74,62 62,72"/>',
+  app: '<rect x="26" y="4" width="48" height="92" rx="12" fill="#EDE9FE"/><line x1="42" y1="82" x2="58" y2="82"/><polyline points="40,34 50,44 40,54"/><line x1="56" y1="56" x2="64" y2="56"/>',
+  sistema:
+    '<rect x="6" y="54" width="38" height="38" rx="9" fill="#EDE9FE"/><rect x="56" y="54" width="38" height="38" rx="9" fill="#EDE9FE"/><rect x="31" y="6" width="38" height="38" rx="9" fill="#DDD6FE"/><line x1="50" y1="44" x2="50" y2="73"/><line x1="44" y1="73" x2="56" y2="73"/>',
+  rayo: '<path d="M58 4 L18 56 H46 L38 96 L84 38 H54 Z" fill="#DDD6FE"/>',
+};
+---
+
+<section id="servicios" class="seccion">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <p class="sobretitulo">Lo que hacemos</p>
+      <h2>Software a la medida, sin dolores de cabeza</h2>
+      <p class="lead">
+        Cada negocio es distinto. Por eso no vendemos plantillas: construimos lo que tu empresa realmente necesita.
+      </p>
+    </div>
+    <div class="rejilla rejilla--servicios">
+      {
+        servicios.map((s, i) => (
+          <div data-reveal="pop" style={`--d:${i * 0.1}s`}>
+            <article class="tarjeta tarjeta--servicio">
+              <svg
+                viewBox="0 0 100 100"
+                class="icono"
+                aria-hidden="true"
+                fill="none"
+                stroke="#7C3AED"
+                stroke-width="7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={iconos[s.icono]}
+              />
+              <h3>{s.titulo}</h3>
+              <p>{s.texto}</p>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
